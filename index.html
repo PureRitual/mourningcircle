@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mourning Circle</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin:0; min-height:100svh; display:grid; place-items:center; background:#0b0b0c; color:#e8e6ea; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+      .card { text-align:center; padding:3rem 2rem; border:1px solid #2b2b2f; border-radius:18px; background:radial-gradient(1000px 400px at 50% -20%, #141418 0%, #0b0b0c 60%); box-shadow:0 10px 40px rgba(0,0,0,.4);}
+      h1 { letter-spacing:.06em; margin:0 0 .5rem; font-size:clamp(1.6rem, 4vw, 2.2rem); }
+      p  { opacity:.85; margin:.25rem 0 .75rem; }
+      .moon { width:84px; height:84px; border-radius:50%; border:2px solid #cfcfd6; position:relative; margin:0 auto 1rem; background:radial-gradient(120% 120% at 30% 30%, #dcdce3 0%, #bdbdc7 60%, #9a9aa6 100%); }
+      .moon::after, .moon::before { content:""; position:absolute; background:#0b0b0c; opacity:.22; border-radius:50%; }
+      .moon::after { width:18px; height:18px; top:22px; left:26px; }
+      .moon::before { width:10px; height:10px; top:40px; left:50px; }
+      small { opacity:.6; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="moon" aria-hidden="true"></div>
+      <h1>Mourning Circle</h1>
+      <p>Gather. Reflect. Create. (coming soon)</p>
+      <small>© <span id="y"></span> Mourning Circle</small>
+    </div>
+    <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+  </body>
+</html>
