@@ -1,29 +1,62 @@
-<!doctype html>
-<html lang="en">
-  <head>
+ <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Mourning Circle</title>
-    <style>
-      :root { color-scheme: dark; }
-      body { margin:0; min-height:100svh; display:grid; place-items:center; background:#0b0b0c; color:#e8e6ea; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-      .card { text-align:center; padding:3rem 2rem; border:1px solid #2b2b2f; border-radius:18px; background:radial-gradient(1000px 400px at 50% -20%, #141418 0%, #0b0b0c 60%); box-shadow:0 10px 40px rgba(0,0,0,.4);}
-      h1 { letter-spacing:.06em; margin:0 0 .5rem; font-size:clamp(1.6rem, 4vw, 2.2rem); }
-      p  { opacity:.85; margin:.25rem 0 .75rem; }
-      .moon { width:84px; height:84px; border-radius:50%; border:2px solid #cfcfd6; position:relative; margin:0 auto 1rem; background:radial-gradient(120% 120% at 30% 30%, #dcdce3 0%, #bdbdc7 60%, #9a9aa6 100%); }
-      .moon::after, .moon::before { content:""; position:absolute; background:#0b0b0c; opacity:.22; border-radius:50%; }
-      .moon::after { width:18px; height:18px; top:22px; left:26px; }
-      .moon::before { width:10px; height:10px; top:40px; left:50px; }
-      small { opacity:.6; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <div class="card">
-      <div class="moon" aria-hidden="true"></div>
+    <header class="header">
       <h1>Mourning Circle</h1>
-      <p>Gather. Reflect. Create. (coming soon)</p>
-      <small>© <span id="y"></span> Mourning Circle</small>
-    </div>
+      <label>City
+        <select id="filter-city">
+          <option>All</option><option>LA</option><option>Phoenix</option><option>Vegas</option>
+        </select>
+      </label>
+      <label>Genre
+        <select id="filter-genre">
+          <option>All</option><option>Goth</option><option>Industrial</option><option>Darkwave</option>
+        </select>
+      </label>
+    </header>
+
+    <main class="container">
+      <section class="card calendar" id="calendar">
+        <h2 class="section-title">Calendar (filterable)</h2>
+        <!-- TODO: render events grid -->
+      </section>
+
+      <aside class="card stream" id="stream">
+        <div>
+          <h2 class="section-title">Featured Stream (paused)</h2>
+          <p>Showcased stream placeholder. Starts paused.</p>
+        </div>
+        <button type="button" aria-pressed="false">Play</button>
+      </aside>
+
+      <section class="card flyer" id="flyer">
+        <h2 class="section-title">Flyer Ad (Now / Coming Up)</h2>
+        <!-- event flyer graphic goes here -->
+      </section>
+
+      <aside class="card ads" id="ads">
+        <div class="card"><strong>Store/Service Ad</strong><br><small>No personal data used.</small></div>
+        <div class="card"><strong>Store/Service Ad</strong></div>
+      </aside>
+
+      <section class="card music" id="music">
+        <h2 class="section-title">Music Area (playlist / jams)</h2>
+        <p>Connected to streaming later; genre-based playlist hook.</p>
+      </section>
+
+      <section class="card feed" id="public-feed">
+        <h2 class="section-title">Public Posts</h2>
+        <p>Replies show here and on poster’s page.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="y"></span> Mourning Circle
+    </footer>
+
     <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
   </body>
-</html>
