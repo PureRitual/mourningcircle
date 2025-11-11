@@ -1,0 +1,25 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background:#0b0b0c; color:#e8e6ea; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+a { color: inherit; }
+
+.header { padding: 1rem 1.25rem; border-bottom:1px solid #222328; display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+.header h1 { font-size:1.15rem; margin:0; letter-spacing:.04em; }
+
+.container { max-width:1100px; margin:0 auto; padding:1rem; display:grid; grid-template-columns: 1fr; gap:1rem; }
+@media (min-width: 900px) {
+  .container { grid-template-columns: 2fr 1fr; }
+}
+
+.card { border:1px solid #222328; border-radius:14px; background:#0f0f13; padding:1rem; box-shadow:0 8px 30px rgba(0,0,0,.35); }
+
+.section-title { margin:.25rem 0 1rem; font-size:1rem; opacity:.9; letter-spacing:.06em; }
+
+.calendar { min-height: 280px; }
+.stream { min-height:160px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.stream button { padding:.6rem 1rem; border-radius:10px; background:#15151b; border:1px solid #2b2c33; color:#e8e6ea; cursor:pointer; }
+.flyer { min-height:140px; }
+.ads { display:grid; grid-template-columns:1fr; gap:.75rem; }
+.music { min-height:120px; }
+.feed { min-height:260px; }
+.footer { opacity:.6; padding:1rem; text-align:center; border-top:1px solid #222328; margin-top:1rem; }
