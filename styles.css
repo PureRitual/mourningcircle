@@ -28,3 +28,14 @@ a { color: inherit; }
 #coven-tree li { margin: .25rem 0; padding-left: .5rem; }
 #coven-tree a  { text-decoration: none; border-bottom: 1px dotted #444; }
 #coven-tree small { opacity: .6; }
+
+/* --- soft glow + link hover --- */
+.card:hover {
+  box-shadow: 0 0 12px rgba(200, 200, 255, 0.12);
+  transition: box-shadow 0.3s ease;
+}
+
+a:hover {
+  color: #b3a7ff;
+  text-shadow: 0 0 6px rgba(179, 167, 255, 0.4);
+}
