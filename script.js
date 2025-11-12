@@ -110,3 +110,35 @@ document.addEventListener('click', (e) => {
     e.target.classList.add('active');
   }
 });
+
+// --- Moon phases: live + demo (no API) ---
+(function(){
+  const phases = ["🌑","🌒","🌓","🌔","🌕","🌖","🌗","🌘"]; // 0..7
+
+  // Rough synodic cycle math; reference new moon 2000-01-06 18:14 UTC
+  function phaseIndex(d=new Date()){
+    const synodic = 29.530588853; // days
+    const ref = new Date(Date.UTC(2000,0,6,18,14,0));
+    const days = (d - ref) / 86400000;
+    const moonAge = ((days % synodic) + synodic) % synodic;
+    return Math.floor((moonAge / synodic) * 8) % 8; // 0..7
+  }
+
+  // Live badge (today’s phase)
+  const liveEl = document.getElementById('moon-live');
+  if (liveEl) {
+    const ix = phaseIndex(new Date());
+    liveEl.textContent = phases[ix];
+  }
+
+  // Demo badge (cycles so you can compare looks)
+  const demoEl = document.getElementById('moon-demo');
+  if (demoEl) {
+    let i = 0;
+    demoEl.textContent = phases[i];
+    setInterval(() => {
+      i = (i + 1) % phases.length;
+      demoEl.textContent = phases[i];
+    }, 1200);
+  }
+})();
