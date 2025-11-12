@@ -28,3 +28,40 @@ genreFilter.addEventListener("change", render);
 
 // first render
 render();
+
+// --- Coven Map (static JSON -> nested list) ---
+async function loadCoven() {
+  try {
+    const res = await fetch('coven.json', { cache: 'no-store' });
+    const members = await res.json();
+
+    // index by id and build children lists
+    const byId = new Map(members.map(m => [m.id, { ...m, children: [] }]));
+    let roots = [];
+    for (const m of byId.values()) {
+      if (m.siredBy && byId.has(m.siredBy)) byId.get(m.siredBy).children.push(m);
+      else roots.push(m);
+    }
+
+    // recursive DOM builder
+    const ul = (nodes) => {
+      const u = document.createElement('ul');
+      for (const n of nodes) {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${n.url}" target="_blank" rel="noopener">${n.name}</a> ` +
+                       (n.siredBy ? `<small>(sired by ${byId.get(n.siredBy)?.name || 'Unknown'})</small>` : `<small>(root)</small>`);
+        if (n.children.length) li.appendChild(ul(n.children));
+        u.appendChild(li);
+      }
+      return u;
+    };
+
+    const mount = document.getElementById('coven-tree');
+    mount.textContent = '';                 // clear "Loading…"
+    mount.appendChild(ul(roots));
+  } catch (e) {
+    document.getElementById('coven-tree').textContent = 'Could not load coven data.';
+    console.error(e);
+  }
+}
+loadCoven();
