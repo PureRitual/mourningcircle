@@ -111,34 +111,62 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// --- Moon phases: live + demo (no API) ---
-(function(){
+// --- Live moon phase + next milestone (no API) ---
+(function () {
   const phases = ["🌑","🌒","🌓","🌔","🌕","🌖","🌗","🌘"]; // 0..7
+  const phaseNames = [
+    "New Moon","Waxing Crescent","First Quarter","Waxing Gibbous",
+    "Full Moon","Waning Gibbous","Last Quarter","Waning Crescent"
+  ];
 
-  // Rough synodic cycle math; reference new moon 2000-01-06 18:14 UTC
-  function phaseIndex(d=new Date()){
-    const synodic = 29.530588853; // days
-    const ref = new Date(Date.UTC(2000,0,6,18,14,0));
-    const days = (d - ref) / 86400000;
-    const moonAge = ((days % synodic) + synodic) % synodic;
-    return Math.floor((moonAge / synodic) * 8) % 8; // 0..7
+  const synodic = 29.530588853; // days
+  const ref = new Date(Date.UTC(2000,0,6,18,14,0)); // known new moon
+  function moonAge(date = new Date()){
+    const days = (date - ref) / 86400000;
+    return ((days % synodic) + synodic) % synodic; // 0..29.53
+  }
+  function phaseIndexFromAge(age){
+    return Math.floor((age / synodic) * 8) % 8; // 0..7
+  }
+  function illumPercent(age){
+    // simple model: 0% at new, 100% at full
+    const twoPi = Math.PI * 2;
+    return Math.round(50 * (1 - Math.cos(twoPi * (age / synodic))) );
+  }
+  function nextMilestone(date, age){
+    // milestones near 0, 7.38, 14.77, 22.15, 29.53
+    const marks = [
+      {name:"New Moon", a:0},
+      {name:"First Quarter", a:synodic/4},
+      {name:"Full Moon", a:synodic/2},
+      {name:"Last Quarter", a:3*synodic/4},
+      {name:"New Moon", a:synodic}
+    ];
+    for (const m of marks){
+      if (age < m.a) {
+        const days = m.a - age;
+        const when = new Date(date.getTime() + days*86400000);
+        return { label: m.name, date: when };
+      }
+    }
+    // fallback
+    const when = new Date(date.getTime() + (synodic - age)*86400000);
+    return { label: "New Moon", date: when };
   }
 
-  // Live badge (today’s phase)
-  const liveEl = document.getElementById('moon-live');
-  if (liveEl) {
-    const ix = phaseIndex(new Date());
-    liveEl.textContent = phases[ix];
+  const now = new Date();
+  const age = moonAge(now);
+  const ix = phaseIndexFromAge(age);
+  const live = document.getElementById('moon-live');
+  const info = document.getElementById('moon-info');
+  if (live) {
+    live.textContent = phases[ix];
+    live.title = `${phaseNames[ix]} • ~${illumPercent(age)}% illuminated`;
+    live.setAttribute('aria-label', live.title);
   }
-
-  // Demo badge (cycles so you can compare looks)
-  const demoEl = document.getElementById('moon-demo');
-  if (demoEl) {
-    let i = 0;
-    demoEl.textContent = phases[i];
-    setInterval(() => {
-      i = (i + 1) % phases.length;
-      demoEl.textContent = phases[i];
-    }, 1200);
+  if (info) {
+    const n = nextMilestone(now, age);
+    const opts = { month: 'short', day: 'numeric' };
+    info.textContent = `${phaseNames[ix]} • ~${illumPercent(age)}% • next: ${n.label} ${n.date.toLocaleDateString(undefined, opts)}`;
   }
 })();
