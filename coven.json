@@ -1,0 +1,6 @@
+[
+  { "id": "frankie", "name": "Frankie (Founder)", "url": "https://mourningcircle.com", "siredBy": null },
+  { "id": "heather", "name": "Heather", "url": "https://example.com/heather", "siredBy": "frankie" },
+  { "id": "kyle",    "name": "Kyle",    "url": "https://example.com/kyle",    "siredBy": "frankie" },
+  { "id": "brian",   "name": "Brian",   "url": "https://example.com/brian",   "siredBy": "heather" }
+]
