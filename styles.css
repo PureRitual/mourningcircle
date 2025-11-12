@@ -23,3 +23,8 @@ a { color: inherit; }
 .music { min-height:120px; }
 .feed { min-height:260px; }
 .footer { opacity:.6; padding:1rem; text-align:center; border-top:1px solid #222328; margin-top:1rem; }
+
+#coven-tree ul { list-style: none; padding-left: 1rem; border-left: 1px solid #2b2c33; margin: .25rem 0 .5rem; }
+#coven-tree li { margin: .25rem 0; padding-left: .5rem; }
+#coven-tree a  { text-decoration: none; border-bottom: 1px dotted #444; }
+#coven-tree small { opacity: .6; }
