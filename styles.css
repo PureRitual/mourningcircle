@@ -86,7 +86,17 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 .moon-badge:hover { box-shadow:0 0 12px rgba(180,180,255,.25) inset; }
 
 /* live moon badge + info */
-#moon-info { margin-left:.5rem; opacity:.7; letter-spacing:.02em; }
+/* moon phase text styling */
+#moon-info {
+  margin-left: .6rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  letter-spacing: .03em;
+  color: #b4a8ff;
+  text-shadow: 0 0 6px rgba(190,180,255,0.25);
+  opacity: 0.9;
+}
+
 .moon-badge.pulse { animation: moonPulse 3.2s ease-in-out infinite; }
 @keyframes moonPulse { 
   0%,100% { box-shadow: 0 0 8px rgba(180,180,255,.15) inset; }
