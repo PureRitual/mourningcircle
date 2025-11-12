@@ -84,3 +84,11 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 }
 .moon-badge.dim { opacity:.6 }
 .moon-badge:hover { box-shadow:0 0 12px rgba(180,180,255,.25) inset; }
+
+/* live moon badge + info */
+#moon-info { margin-left:.5rem; opacity:.7; letter-spacing:.02em; }
+.moon-badge.pulse { animation: moonPulse 3.2s ease-in-out infinite; }
+@keyframes moonPulse { 
+  0%,100% { box-shadow: 0 0 8px rgba(180,180,255,.15) inset; }
+  50%    { box-shadow: 0 0 14px rgba(200,200,255,.30) inset; }
+}
