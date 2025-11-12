@@ -41,3 +41,18 @@ a:hover {
 }
 
 background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
+
+/* --- collapsible coven branches --- */
+#coven-tree details { margin:.25rem 0 .25rem .5rem; }
+#coven-tree summary {
+  list-style:none; cursor:pointer; user-select:none;
+  display:inline-flex; align-items:center; gap:.4rem;
+}
+#coven-tree summary::-webkit-details-marker { display:none; }
+#coven-tree .caret {
+  width:.6rem; height:.6rem; border-right:2px solid #666; border-bottom:2px solid #666;
+  transform: rotate(-45deg); transition: transform .2s ease;
+}
+#coven-tree details[open] > summary .caret { transform: rotate(45deg); }
+#coven-tree a { text-decoration:none; border-bottom:1px dotted #444; }
+#coven-tree small { opacity:.6; }
