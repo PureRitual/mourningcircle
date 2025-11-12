@@ -56,3 +56,10 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 #coven-tree details[open] > summary .caret { transform: rotate(45deg); }
 #coven-tree a { text-decoration:none; border-bottom:1px dotted #444; }
 #coven-tree small { opacity:.6; }
+
+/* --- coven selection glow --- */
+#coven-tree a.active {
+  color: #c9b7ff;
+  text-shadow: 0 0 6px rgba(200,180,255,0.8);
+  font-weight: 600;
+}
