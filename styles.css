@@ -39,3 +39,5 @@ a:hover {
   color: #b3a7ff;
   text-shadow: 0 0 6px rgba(179, 167, 255, 0.4);
 }
+
+background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
