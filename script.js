@@ -65,3 +65,14 @@ async function loadCoven() {
   }
 }
 loadCoven();
+
+// --- Play button mock behavior ---
+const playBtn = document.querySelector('.stream button');
+if (playBtn) {
+  playBtn.addEventListener('click', () => {
+    const isPlaying = playBtn.textContent === 'Pause';
+    playBtn.textContent = isPlaying ? 'Play' : 'Pause';
+    playBtn.setAttribute('aria-pressed', !isPlaying);
+  });
+}
+
