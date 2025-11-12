@@ -100,3 +100,13 @@ if (playBtn) {
   });
 }
 
+// --- highlight active coven member ---
+document.addEventListener('click', (e) => {
+  if (e.target.matches('#coven-tree a')) {
+    e.preventDefault();
+    document
+      .querySelectorAll('#coven-tree a.active')
+      .forEach(a => a.classList.remove('active'));
+    e.target.classList.add('active');
+  }
+});
