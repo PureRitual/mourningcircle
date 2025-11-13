@@ -131,15 +131,13 @@ loadCoven();
       whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
     }
 
-    flyerEl.innerHTML = `
-      <div class="flyer-main">
-        <div class="flyer-tag">${whenLabel}</div>
-        <h3>${best.title}</h3>
-        <p class="flyer-meta">${best.city} • ${best.genre} • ${best.venue}</p>
-        <p class="flyer-note">${best.note}</p>
-        <a class="flyer-link" href="${best.url}">Details</a>
-      </div>
-    `;
+       <p class="flyer-meta">
+      <button class="chip" data-city="${best.city}"><span>${best.city}</span></button>
+      <span>•</span>
+      <button class="chip" data-genre="${best.genre}"><span>${best.genre}</span></button>
+      <span>• ${best.venue}</span>
+    </p>
+
   } catch (err) {
     console.error(err);
     flyerEl.textContent = "Could not load flyer data.";
