@@ -89,6 +89,63 @@ async function loadCoven() {
 }
 loadCoven();
 
+// --- Flyer panel: pick next upcoming event from flyers.json ---
+(async function () {
+  const flyerEl = document.getElementById("flyer-card");
+  if (!flyerEl) return;
+
+  try {
+    const res = await fetch("flyers.json", { cache: "no-store" });
+    const flyerEvents = await res.json();
+    if (!flyerEvents || !flyerEvents.length) {
+      flyerEl.textContent = "No upcoming events in the flyer rotation.";
+      return;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let best = null;
+    let bestDiff = Infinity;
+
+    for (const ev of flyerEvents) {
+      const d = new Date(ev.date + "T00:00:00");
+      const diffDays = (d - today) / 86400000;
+      if (diffDays >= 0 && diffDays < bestDiff) {
+        bestDiff = diffDays;
+        best = { ...ev, diffDays };
+      }
+    }
+
+    if (!best) {
+      flyerEl.textContent = "No upcoming events in the flyer rotation.";
+      return;
+    }
+
+    let whenLabel = "";
+    if (best.diffDays === 0) whenLabel = "Tonight";
+    else if (best.diffDays === 1) whenLabel = "Tomorrow";
+    else if (best.diffDays <= 7) whenLabel = "This week";
+    else {
+      const d = new Date(best.date + "T00:00:00");
+      whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    }
+
+    flyerEl.innerHTML = `
+      <div class="flyer-main">
+        <div class="flyer-tag">${whenLabel}</div>
+        <h3>${best.title}</h3>
+        <p class="flyer-meta">${best.city} • ${best.genre} • ${best.venue}</p>
+        <p class="flyer-note">${best.note}</p>
+        <a class="flyer-link" href="${best.url}">Details</a>
+      </div>
+    `;
+  } catch (err) {
+    console.error(err);
+    flyerEl.textContent = "Could not load flyer data.";
+  }
+})();
+
 
 // --- Play button mock behavior ---
 const playBtn = document.querySelector('.stream button');
