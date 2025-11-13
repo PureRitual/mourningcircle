@@ -25,6 +25,8 @@ function render() {
 
   calendar.innerHTML = `<h2 class="section-title">Calendar (filterable)</h2>` +
     filtered.map(e => `<p>🩸 ${e.title} — <small>${e.genre}</small></p>`).join("");
+  // also refresh flyer when filters change
+  updateFlyer();
 }
 
 cityFilter.addEventListener("change", render);
