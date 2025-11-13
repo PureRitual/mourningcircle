@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Obelisk – LA",
+    "date": "2025-11-15",
+    "city": "LA",
+    "genre": "Goth",
+    "venue": "Obelisk",
+    "address": "Downtown LA",
+    "note": "All-vinyl goth night. 10pm–2am.",
+    "url": "#",
+    "image": null
+  },
+  {
+    "title": "Bar Sinister – LA",
+    "date": "2025-11-22",
+    "city": "LA",
+    "genre": "Industrial",
+    "venue": "Bar Sinister",
+    "address": "Hollywood",
+    "note": "Live bands + DJs in the courtyard.",
+    "url": "#",
+    "image": null
+  },
+  {
+    "title": "Club Metro – Phoenix",
+    "date": "2025-11-29",
+    "city": "Phoenix",
+    "genre": "Darkwave",
+    "venue": "Club Metro",
+    "address": "Phoenix",
+    "note": "Darkwave & post-punk all night.",
+    "url": "#",
+    "image": null
+  }
+]
