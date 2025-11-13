@@ -10,6 +10,10 @@ const calendar = document.getElementById("calendar");
 const cityFilter = document.getElementById("filter-city");
 const genreFilter = document.getElementById("filter-genre");
 
+// flyer globals
+const flyerEl = document.getElementById("flyer-card");
+let flyerEvents = [];
+
 function render() {
   const city = cityFilter.value;
   const genre = genreFilter.value;
