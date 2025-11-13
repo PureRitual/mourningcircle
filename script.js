@@ -95,47 +95,58 @@ async function loadCoven() {
 }
 loadCoven();
 
-// --- Flyer panel: pick next upcoming event from flyers.json ---
-(async function () {
-  const flyerEl = document.getElementById("flyer-card");
+// --- Flyer panel: load events and pick next upcoming, respecting filters ---
+async function loadFlyers() {
   if (!flyerEl) return;
 
   try {
     const res = await fetch("flyers.json", { cache: "no-store" });
-    const flyerEvents = await res.json();
-    if (!flyerEvents || !flyerEvents.length) {
-      flyerEl.textContent = "No upcoming events in the flyer rotation.";
-      return;
+    flyerEvents = await res.json();
+    updateFlyer();
+  } catch (err) {
+    console.error(err);
+    flyerEl.textContent = "Could not load flyer data.";
+  }
+}
+
+function updateFlyer() {
+  if (!flyerEl || !flyerEvents || !flyerEvents.length) return;
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const city = cityFilter?.value || "All";
+  const genre = genreFilter?.value || "All";
+
+  let best = null;
+  let bestDiff = Infinity;
+
+  for (const ev of flyerEvents) {
+    // respect filters
+    if (city !== "All" && ev.city !== city) continue;
+    if (genre !== "All" && ev.genre !== genre) continue;
+
+    const d = new Date(ev.date + "T00:00:00");
+    const diffDays = (d - today) / 86400000;
+    if (diffDays >= 0 && diffDays < bestDiff) {
+      bestDiff = diffDays;
+      best = { ...ev, diffDays };
     }
+  }
 
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+  if (!best) {
+    flyerEl.textContent = "No upcoming events matching these filters.";
+    return;
+  }
 
-    let best = null;
-    let bestDiff = Infinity;
-
-    for (const ev of flyerEvents) {
-      const d = new Date(ev.date + "T00:00:00");
-      const diffDays = (d - today) / 86400000;
-      if (diffDays >= 0 && diffDays < bestDiff) {
-        bestDiff = diffDays;
-        best = { ...ev, diffDays };
-      }
-    }
-
-    if (!best) {
-      flyerEl.textContent = "No upcoming events in the flyer rotation.";
-      return;
-    }
-
-    let whenLabel = "";
-    if (best.diffDays === 0) whenLabel = "Tonight";
-    else if (best.diffDays === 1) whenLabel = "Tomorrow";
-    else if (best.diffDays <= 7) whenLabel = "This week";
-    else {
-      const d = new Date(best.date + "T00:00:00");
-      whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-    }
+  let whenLabel = "";
+  if (best.diffDays === 0) whenLabel = "Tonight";
+  else if (best.diffDays === 1) whenLabel = "Tomorrow";
+  else if (best.diffDays <= 7) whenLabel = "This week";
+  else {
+    const d = new Date(best.date + "T00:00:00");
+    whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+  }
 
   flyerEl.innerHTML = `
     <div class="flyer-main">
@@ -151,14 +162,10 @@ loadCoven();
       <a class="flyer-link" href="${best.url}">Details</a>
     </div>
   `;
+}
 
-
-  } catch (err) {
-    console.error(err);
-    flyerEl.textContent = "Could not load flyer data.";
-  }
-})();
-
+// load flyers once on page load
+loadFlyers();
 
 // --- Play button mock behavior ---
 const playBtn = document.querySelector('.stream button');
