@@ -102,3 +102,51 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
   0%,100% { box-shadow: 0 0 8px rgba(180,180,255,.15) inset; }
   50%    { box-shadow: 0 0 14px rgba(200,200,255,.30) inset; }
 }
+
+/* flyer panel */
+#flyer-card {
+  min-height: 120px;
+  display: flex;
+  align-items: stretch;
+}
+.flyer-main {
+  border-radius: 12px;
+  border: 1px solid #2b2c33;
+  padding: .9rem 1rem;
+  background: radial-gradient(120% 140% at 0% 0%, #181620 0%, #0f0f16 60%);
+  width: 100%;
+}
+.flyer-main h3 {
+  margin: .2rem 0 .3rem;
+  font-size: 1rem;
+}
+.flyer-meta {
+  margin: 0 0 .35rem;
+  font-size: .85rem;
+  opacity: .8;
+}
+.flyer-note {
+  margin: 0 0 .6rem;
+  font-size: .9rem;
+}
+.flyer-tag {
+  display:inline-block;
+  padding: .12rem .45rem;
+  border-radius: 999px;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: #b12b5a;
+  color: #fff;
+  margin-bottom: .35rem;
+}
+.flyer-link {
+  display: inline-block;
+  font-size: .85rem;
+  text-decoration: none;
+  border-bottom: 1px solid #b3a7ff;
+  padding-bottom: 1px;
+}
+.flyer-link:hover {
+  color: #d0c7ff;
+}
