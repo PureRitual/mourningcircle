@@ -150,3 +150,22 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 .flyer-link:hover {
   color: #d0c7ff;
 }
+
+/* small clickable chips in flyer meta */
+.chip {
+  display:inline-block;
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  border: 1px solid #343545;
+  background:#151521;
+  font-size:.78rem;
+  cursor:pointer;
+  margin-right:.25rem;
+}
+.chip:hover {
+  border-color:#b3a7ff;
+  box-shadow:0 0 6px rgba(179,167,255,0.4);
+}
+.chip span {
+  pointer-events:none;
+}
