@@ -175,6 +175,23 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// --- flyer chips -> control calendar filters ---
+document.addEventListener('click', (e) => {
+  const target = e.target.closest('.chip');
+  if (!target) return;
+
+  const city = target.getAttribute('data-city');
+  const genre = target.getAttribute('data-genre');
+
+  if (city) {
+    cityFilter.value = city;
+  }
+  if (genre) {
+    genreFilter.value = genre;
+  }
+  render(); // re-render calendar with new filters
+});
+
 // --- Live moon phase + next milestone (no API) ---
 (function () {
   const phases = ["🌑","🌒","🌓","🌔","🌕","🌖","🌗","🌘"]; // 0..7
