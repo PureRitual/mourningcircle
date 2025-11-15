@@ -219,3 +219,65 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 .modal-close:hover {
   box-shadow: 0 0 8px rgba(179,167,255,0.35);
 }
+
+/* --- submit page: two-sided flyer preview --- */
+.flyer-flip {
+  margin-top: .4rem;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.flyer-flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+.flyer-flip.is-back .flyer-flip-inner {
+  transform: rotateY(180deg);
+}
+.flyer-face {
+  backface-visibility: hidden;
+  position: relative;
+}
+.flyer-face.flyer-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* image side */
+.flyer-image-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #2b2c33;
+  background: radial-gradient(120% 140% at 0% 0%, #181620 0%, #0f0f16 60%);
+  position: relative;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flyer-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none; /* shown only when there is an image */
+}
+.flyer-image-frame.has-image .flyer-preview-img {
+  display: block;
+}
+.flyer-image-frame.has-image .flyer-front-hint {
+  display: none;
+}
+.flyer-front-hint {
+  position: absolute;
+  padding: .4rem .7rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.65);
+  font-size: .78rem;
+  letter-spacing: .03em;
+}
+.flyer-front-hint-small {
+  font-size: .75rem;
+  opacity: .75;
+  margin-top: .35rem;
+}
