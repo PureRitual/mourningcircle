@@ -86,25 +86,47 @@
         </form>
       </section>
 
-            <!-- Preview modal -->
+      <!-- Preview modal -->
       <div id="preview-modal" class="modal" aria-hidden="true">
         <div class="modal-backdrop"></div>
         <div class="modal-content card">
           <h2 class="section-title">Flyer preview</h2>
           <p style="font-size:.8rem; opacity:.75; margin-bottom:.6rem;">
-            This is roughly how your event will appear in the flyer panel.
+            Click the flyer to flip between image and event details.
           </p>
-          <div class="flyer-main">
-            <div class="flyer-tag" id="preview-when">Date</div>
-            <h3 id="preview-title">Event name</h3>
-            <p class="flyer-meta" id="preview-meta">City • Genre • Venue</p>
-            <p class="flyer-note" id="preview-note">Description / lineup.</p>
+
+          <div class="flyer-flip" id="flyer-flip">
+            <div class="flyer-flip-inner">
+              <!-- FRONT: image side -->
+              <div class="flyer-face flyer-front">
+                <div class="flyer-image-frame">
+                  <img id="preview-image" class="flyer-preview-img" alt="Flyer image preview" />
+                  <div class="flyer-front-hint">
+                    <span>No image selected yet – your uploaded flyer will appear here.</span>
+                  </div>
+                </div>
+                <p class="flyer-front-hint-small">Click the flyer to see details.</p>
+              </div>
+
+              <!-- BACK: text/details side -->
+              <div class="flyer-face flyer-back">
+                <div class="flyer-main">
+                  <div class="flyer-tag" id="preview-when">Date</div>
+                  <h3 id="preview-title">Event name</h3>
+                  <p class="flyer-meta" id="preview-meta">City • Genre • Venue</p>
+                  <p class="flyer-note" id="preview-note">Description / lineup.</p>
+                  <!-- later we can add an "Add to calendar" button here -->
+                </div>
+              </div>
+            </div>
           </div>
+
           <button type="button" class="modal-close" id="preview-close">
             Close
           </button>
         </div>
       </div>
+
       
     </main>
 
