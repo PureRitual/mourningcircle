@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mourning Circle – Submit an Event</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Mourning Circle</h1>
+      <small style="opacity:.75; margin-left:.5rem;">List your gothic / industrial event</small>
+    </header>
+
+    <main class="container" style="max-width: 800px;">
+      <section class="card">
+        <h2 class="section-title">Submit an Event (coming soon)</h2>
+        <p style="opacity:.85; margin-bottom:1rem;">
+          This form is a preview of how promoters will list events on Mourning Circle.
+          Submission, flyer upload, and payment will be wired up later.
+        </p>
+
+        <form id="event-form">
+          <div style="margin-bottom:.75rem;">
+            <label for="title">Event name</label><br />
+            <input id="title" name="title" type="text" required style="width:100%; padding:.4rem;" />
+          </div>
+
+          <div style="display:flex; gap:.75rem; margin-bottom:.75rem; flex-wrap:wrap;">
+            <div style="flex:1 1 140px;">
+              <label for="date">Date</label><br />
+              <input id="date" name="date" type="date" required style="width:100%; padding:.4rem;" />
+            </div>
+            <div style="flex:1 1 140px;">
+              <label for="city">City</label><br />
+              <input id="city" name="city" type="text" placeholder="LA, Phoenix, Vegas…" required style="width:100%; padding:.4rem;" />
+            </div>
+            <div style="flex:1 1 140px;">
+              <label for="genre">Genre / night type</label><br />
+              <select id="genre" name="genre" required style="width:100%; padding:.4rem;">
+                <option value="">Select…</option>
+                <option>Goth</option>
+                <option>Industrial</option>
+                <option>Darkwave</option>
+                <option>EBM</option>
+                <option>Synth / Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-bottom:.75rem;">
+            <label for="venue">Venue name</label><br />
+            <input id="venue" name="venue" type="text" required style="width:100%; padding:.4rem;" />
+          </div>
+
+          <div style="margin-bottom:.75rem;">
+            <label for="address">Venue address</label><br />
+            <input id="address" name="address" type="text" placeholder="Street, city, state" style="width:100%; padding:.4rem;" />
+          </div>
+
+          <div style="margin-bottom:.75rem;">
+            <label for="note">Description / lineup / dress code</label><br />
+            <textarea id="note" name="note" rows="4" style="width:100%; padding:.4rem;"></textarea>
+          </div>
+
+          <div style="margin-bottom:.75rem;">
+            <label for="flyer">Flyer file</label><br />
+            <input id="flyer" name="flyer" type="file" accept="image/*,.pdf" />
+            <p style="font-size:.8rem; opacity:.7; margin:.25rem 0 0;">
+              JPG, PNG, or PDF. Max size and rules will be defined later.
+            </p>
+          </div>
+
+          <div style="margin-bottom:.75rem;">
+            <label for="contact">Contact email (not displayed publicly)</label><br />
+            <input id="contact" name="contact" type="email" style="width:100%; padding:.4rem;" />
+          </div>
+
+          <p style="font-size:.8rem; opacity:.7; margin-bottom:1rem;">
+            Payment and review flow are not active yet. This page is for layout and testing only.
+          </p>
+
+          <button type="submit" style="padding:.5rem 1.1rem; border-radius:999px; border:1px solid #2b2c33; background:#15151b; color:#e8e6ea; cursor:pointer;">
+            Preview submission
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="index.html" style="text-decoration:none; border-bottom:1px dotted #555;">← Back to Mourning Circle</a>
+    </footer>
+
+    <script>
+      // simple placeholder: prevent real submission for now
+      const form = document.getElementById('event-form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          alert('In the future, this will submit your event, upload the flyer, and handle payment. For now, this is just a layout preview.');
+        });
+      }
+    </script>
+  </body>
+</html>
