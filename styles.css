@@ -182,3 +182,40 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 .chip span {
   pointer-events:none;
 }
+
+/* --- submit page: preview modal --- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.modal.show {
+  display: flex;
+}
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+.modal-content {
+  position: relative;
+  max-width: 520px;
+  width: 90%;
+  z-index: 1;
+}
+.modal-close {
+  margin-top: .9rem;
+  padding: .4rem .9rem;
+  border-radius: 999px;
+  border: 1px solid #2b2c33;
+  background: #15151b;
+  color: #e8e6ea;
+  cursor: pointer;
+  font-size: .85rem;
+}
+.modal-close:hover {
+  box-shadow: 0 0 8px rgba(179,167,255,0.35);
+}
