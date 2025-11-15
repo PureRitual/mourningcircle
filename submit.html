@@ -134,26 +134,38 @@
       <a href="index.html" style="text-decoration:none; border-bottom:1px dotted #555;">← Back to Mourning Circle</a>
     </footer>
 
-           <script>
+              <script>
       const form = document.getElementById('event-form');
       const modal = document.getElementById('preview-modal');
       const closeBtn = document.getElementById('preview-close');
+
+      const flyerFlip = document.getElementById('flyer-flip');
+      const previewImage = document.getElementById('preview-image');
+      const imageFrame = document.querySelector('.flyer-image-frame');
 
       const previewTitle = document.getElementById('preview-title');
       const previewWhen  = document.getElementById('preview-when');
       const previewMeta  = document.getElementById('preview-meta');
       const previewNote  = document.getElementById('preview-note');
 
+      let lastImageUrl = null;
+
       function openModal() {
         if (!modal) return;
         modal.classList.add('show');
         modal.setAttribute('aria-hidden', 'false');
+        if (flyerFlip) flyerFlip.classList.remove('is-back'); // start on front side
       }
 
       function closeModal() {
         if (!modal) return;
         modal.classList.remove('show');
         modal.setAttribute('aria-hidden', 'true');
+        if (flyerFlip) flyerFlip.classList.remove('is-back');
+        if (lastImageUrl) {
+          URL.revokeObjectURL(lastImageUrl);
+          lastImageUrl = null;
+        }
       }
 
       if (form) {
@@ -166,7 +178,9 @@
           const genre = document.getElementById('genre').value || 'Genre';
           const venue = document.getElementById('venue').value.trim() || 'Venue';
           const note  = document.getElementById('note').value.trim() || 'Description coming soon.';
+          const fileInput = document.getElementById('flyer');
 
+          // date label similar to flyer panel
           let whenLabel = 'Date TBA';
           if (date) {
             const today = new Date();
@@ -184,6 +198,26 @@
           previewMeta.textContent  = `${city} • ${genre} • ${venue}`;
           previewNote.textContent  = note;
 
+          // image preview (front side)
+          if (imageFrame) {
+            imageFrame.classList.remove('has-image');
+          }
+          if (previewImage) {
+            previewImage.src = '';
+          }
+
+          if (fileInput && fileInput.files && fileInput.files[0] && fileInput.files[0].type.startsWith('image/')) {
+            const file = fileInput.files[0];
+            const url = URL.createObjectURL(file);
+            lastImageUrl = url;
+            if (previewImage) {
+              previewImage.src = url;
+            }
+            if (imageFrame) {
+              imageFrame.classList.add('has-image');
+            }
+          }
+
           openModal();
         });
       }
@@ -197,6 +231,12 @@
           if (e.target.classList.contains('modal-backdrop')) {
             closeModal();
           }
+        });
+      }
+
+      if (flyerFlip) {
+        flyerFlip.addEventListener('click', function () {
+          flyerFlip.classList.toggle('is-back');
         });
       }
     </script>
