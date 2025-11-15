@@ -85,6 +85,27 @@
           </button>
         </form>
       </section>
+
+            <!-- Preview modal -->
+      <div id="preview-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content card">
+          <h2 class="section-title">Flyer preview</h2>
+          <p style="font-size:.8rem; opacity:.75; margin-bottom:.6rem;">
+            This is roughly how your event will appear in the flyer panel.
+          </p>
+          <div class="flyer-main">
+            <div class="flyer-tag" id="preview-when">Date</div>
+            <h3 id="preview-title">Event name</h3>
+            <p class="flyer-meta" id="preview-meta">City • Genre • Venue</p>
+            <p class="flyer-note" id="preview-note">Description / lineup.</p>
+          </div>
+          <button type="button" class="modal-close" id="preview-close">
+            Close
+          </button>
+        </div>
+      </div>
+      
     </main>
 
     <footer class="footer">
