@@ -112,15 +112,74 @@
       <a href="index.html" style="text-decoration:none; border-bottom:1px dotted #555;">← Back to Mourning Circle</a>
     </footer>
 
-    <script>
-      // simple placeholder: prevent real submission for now
+        <script>
       const form = document.getElementById('event-form');
+      const modal = document.getElementById('preview-modal');
+      const closeBtn = document.getElementById('preview-close');
+
+      const previewTitle = document.getElementById('preview-title');
+      const previewWhen  = document.getElementById('preview-when');
+      const previewMeta  = document.getElementById('preview-meta');
+      const previewNote  = document.getElementById('preview-note');
+
+      function openModal() {
+        if (!modal) return;
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('show');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
       if (form) {
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          alert('In the future, this will submit your event, upload the flyer, and handle payment. For now, this is just a layout preview.');
+
+          const title = document.getElementById('title').value.trim() || 'Untitled event';
+          const date  = document.getElementById('date').value;
+          const city  = document.getElementById('city').value.trim() || 'City';
+          const genre = document.getElementById('genre').value || 'Genre';
+          const venue = document.getElementById('venue').value.trim() || 'Venue';
+          const note  = document.getElementById('note').value.trim() || 'Description coming soon.';
+
+          // date label similar to flyer panel
+          let whenLabel = 'Date TBA';
+          if (date) {
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const d = new Date(date + 'T00:00:00');
+            const diffDays = Math.round((d - today) / 86400000);
+            if (diffDays === 0) whenLabel = 'Tonight';
+            else if (diffDays === 1) whenLabel = 'Tomorrow';
+            else if (diffDays >= 2 && diffDays <= 7) whenLabel = 'This week';
+            else whenLabel = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+          }
+
+          previewTitle.textContent = title;
+          previewWhen.textContent  = whenLabel;
+          previewMeta.textContent  = `${city} • ${genre} • ${venue}`;
+          previewNote.textContent  = note;
+
+          openModal();
+        });
+      }
+
+      if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target.classList.contains('modal-backdrop')) {
+            closeModal();
+          }
         });
       }
     </script>
   </body>
 </html>
+
+
