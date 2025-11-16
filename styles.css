@@ -303,3 +303,16 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
 .flyer-flip:hover::after {
   opacity: .85;
 }
+
+/* mobile: change flip hint to "tap to flip" */
+@media (max-width: 600px) {
+  .flyer-flip::after {
+    content: "tap to flip";
+    right: .7rem;
+    bottom: -1.3rem;
+    opacity: .55;
+  }
+  .flyer-flip:hover::after {
+    opacity: .9;
+  }
+}
