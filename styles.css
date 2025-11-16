@@ -281,3 +281,25 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
   opacity: .75;
   margin-top: .35rem;
 }
+
+/* flip hint under the flyer */
+.flyer-flip {
+  position: relative; /* makes the ::after hint position correctly */
+}
+
+.flyer-flip::after {
+  content: "↺ flip";
+  position: absolute;
+  bottom: -1.4rem;
+  right: .5rem;
+  font-size: .75rem;
+  opacity: .45;
+  letter-spacing: .03em;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  color: #ccc;
+}
+
+.flyer-flip:hover::after {
+  opacity: .85;
+}
