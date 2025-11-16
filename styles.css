@@ -316,3 +316,29 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
     opacity: .9;
   }
 }
+
+/* --- mobile touch ripple for flyer flip --- */
+@media (max-width: 600px) {
+  .flyer-flip {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .touch-ripple {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(200,180,255,0.25);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: scale(0);
+    animation: rippleExpand 0.55s ease-out forwards;
+  }
+
+  @keyframes rippleExpand {
+    to {
+      transform: scale(10);
+      opacity: 0;
+    }
+  }
+}
