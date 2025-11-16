@@ -239,6 +239,25 @@
           flyerFlip.classList.toggle('is-back');
         });
       }
+
+       // --- mobile ripple effect ---
+flyerFlip.addEventListener('click', function (e) {
+  if (window.innerWidth > 600) return; // only mobile
+
+  const rect = flyerFlip.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const ripple = document.createElement('span');
+  ripple.className = 'touch-ripple';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+
+  flyerFlip.appendChild(ripple);
+
+  setTimeout(() => ripple.remove(), 550);
+});
+ 
     </script>
   </body>
 </html>
