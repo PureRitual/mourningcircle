@@ -389,3 +389,14 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
   font-size: .9rem;
   opacity: .9;
 }
+
+.event-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.event-link:hover .event-row {
+  border-color: #3a3450;
+  box-shadow: 0 0 18px rgba(160, 140, 255, 0.25);
+}
