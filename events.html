@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mourning Circle – All Events</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Mourning Circle</h1>
+      <small style="opacity:.8; margin-left:.5rem;">All upcoming events</small>
+    </header>
+
+    <main class="container" style="max-width: 900px;">
+      <section class="card" id="events-card">
+        <h2 class="section-title">Upcoming Events</h2>
+        <div id="events-list" aria-live="polite">
+          Loading events…
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="index.html" style="text-decoration:none; border-bottom:1px dotted #555;">← Back to Mourning Circle</a>
+    </footer>
+
+    <script>
+      const listEl = document.getElementById('events-list');
+
+      async function loadEvents() {
+        if (!listEl) return;
+
+        try {
+          const res = await fetch('flyers.json', { cache: 'no-store' });
+          const events = await res.json();
+          if (!events || !events.length) {
+            listEl.textContent = 'No events found.';
+            return;
+          }
+
+          const today = new Date();
+          today.setHours(0,0,0,0);
+
+          // map with parsed date + diff
+          const withDates = events.map(ev => {
+            const d = new Date(ev.date + 'T00:00:00');
+            const diff = (d - today) / 86400000;
+            return { ...ev, _date: d, _diffDays: diff };
+          });
+
+          // keep today and future; sort by date
+          const upcoming = withDates
+            .filter(ev => !isNaN(ev._date) && ev._diffDays >= 0)
+            .sort((a,b) => a._date - b._date);
+
+          if (!upcoming.length) {
+            listEl.textContent = 'No upcoming events. Check back soon.';
+            return;
+          }
+
+          const opts = { month: 'short', day: 'numeric', weekday: 'short' };
+
+          listEl.innerHTML = upcoming.map(ev => {
+            let label = ev._date.toLocaleDateString(undefined, opts);
+            if (ev._diffDays === 0) label = 'Tonight • ' + label;
+            else if (ev._diffDays === 1) label = 'Tomorrow • ' + label;
+
+            const city = ev.city || 'City';
+            const genre = ev.genre || 'Genre';
+            const venue = ev.venue || 'Venue';
+            const note = ev.note || '';
+
+            return `
+              <article class="event-row">
+                <div class="event-date">${label}</div>
+                <div class="event-body">
+                  <h3 class="event-title">${ev.title || 'Untitled event'}</h3>
+                  <p class="event-meta">
+                    <span class="chip"><span>${city}</span></span>
+                    <span>•</span>
+                    <span class="chip"><span>${genre}</span></span>
+                    <span>• ${venue}</span>
+                  </p>
+                  ${note ? `<p class="event-note">${note}</p>` : ''}
+                </div>
+              </article>
+            `;
+          }).join('');
+        } catch (err) {
+          console.error(err);
+          listEl.textContent = 'Could not load events.';
+        }
+      }
+
+      loadEvents();
+    </script>
+  </body>
+</html>
