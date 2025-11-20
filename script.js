@@ -59,8 +59,12 @@ function render() {
 cityFilter.addEventListener("change", render);
 genreFilter.addEventListener("change", render);
 
+// apply URL filters first (from events.html links)
+applyFiltersFromURL();
+
 // first render
 render();
+
 
 // --- Coven Map (static JSON -> collapsible tree) ---
 async function loadCoven() {
