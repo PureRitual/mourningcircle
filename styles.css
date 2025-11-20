@@ -342,3 +342,50 @@ background: radial-gradient(80% 60% at 50% 0%, #101016 0%, #0b0b0c 70%);
     }
   }
 }
+
+/* all events list */
+#events-list {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 0.9fr 3fr;
+  gap: .8rem;
+  padding: .65rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #242532;
+  background: radial-gradient(120% 140% at 0% 0%, #15151f 0%, #0f0f16 60%);
+}
+
+@media (max-width: 700px) {
+  .event-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.event-date {
+  font-size: .85rem;
+  opacity: .8;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+.event-title {
+  margin: 0 0 .25rem;
+  font-size: 1rem;
+}
+
+.event-meta {
+  margin: 0 0 .35rem;
+  font-size: .85rem;
+  opacity: .9;
+}
+
+.event-note {
+  margin: 0;
+  font-size: .9rem;
+  opacity: .9;
+}
