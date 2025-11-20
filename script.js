@@ -62,8 +62,12 @@ genreFilter.addEventListener("change", render);
 // apply URL filters first (from events.html links)
 applyFiltersFromURL();
 
+// apply filters from URL first
+applyFiltersFromURL();
+
 // first render
 render();
+
 
 
 // --- Coven Map (static JSON -> collapsible tree) ---
