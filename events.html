@@ -66,27 +66,35 @@
             if (ev._diffDays === 0) label = 'Tonight • ' + label;
             else if (ev._diffDays === 1) label = 'Tomorrow • ' + label;
 
-            const city = ev.city || 'City';
-            const genre = ev.genre || 'Genre';
-            const venue = ev.venue || 'Venue';
-            const note = ev.note || '';
+  const city = ev.city || 'City';
+  const genre = ev.genre || 'Genre';
+  const venue = ev.venue || 'Venue';
+  const note = ev.note || '';
 
-            return `
-              <article class="event-row">
-                <div class="event-date">${label}</div>
-                <div class="event-body">
-                  <h3 class="event-title">${ev.title || 'Untitled event'}</h3>
-                  <p class="event-meta">
-                    <span class="chip"><span>${city}</span></span>
-                    <span>•</span>
-                    <span class="chip"><span>${genre}</span></span>
-                    <span>• ${venue}</span>
-                  </p>
-                  ${note ? `<p class="event-note">${note}</p>` : ''}
-                </div>
-              </article>
-            `;
-          }).join('');
+  const cityParam  = encodeURIComponent(city);
+  const genreParam = encodeURIComponent(genre);
+  const titleParam = encodeURIComponent(ev.title || 'Untitled event');
+  const href = `index.html?city=${cityParam}&genre=${genreParam}&event=${titleParam}`;
+
+  return `
+    <a class="event-link" href="${href}">
+      <article class="event-row">
+        <div class="event-date">${label}</div>
+        <div class="event-body">
+          <h3 class="event-title">${ev.title || 'Untitled event'}</h3>
+          <p class="event-meta">
+            <span class="chip"><span>${city}</span></span>
+            <span>•</span>
+            <span class="chip"><span>${genre}</span></span>
+            <span>• ${venue}</span>
+          </p>
+          ${note ? `<p class="event-note">${note}</p>` : ''}
+        </div>
+      </article>
+    </a>
+  `;
+}).join('');
+
         } catch (err) {
           console.error(err);
           listEl.textContent = 'Could not load events.';
