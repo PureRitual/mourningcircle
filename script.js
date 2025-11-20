@@ -14,6 +14,33 @@ const genreFilter = document.getElementById("filter-genre");
 const flyerEl = document.getElementById("flyer-card");
 let flyerEvents = [];
 
+function applyFiltersFromURL() {
+  if (!cityFilter || !genreFilter) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const city = params.get("city");
+  const genre = params.get("genre");
+
+  if (city) {
+    for (const opt of cityFilter.options) {
+      if (opt.value.toLowerCase() === city.toLowerCase()) {
+        cityFilter.value = opt.value;
+        break;
+      }
+    }
+  }
+
+  if (genre) {
+    for (const opt of genreFilter.options) {
+      if (opt.value.toLowerCase() === genre.toLowerCase()) {
+        genreFilter.value = opt.value;
+        break;
+      }
+    }
+  }
+}
+
+
 function render() {
   const city = cityFilter.value;
   const genre = genreFilter.value;
