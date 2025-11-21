@@ -8,7 +8,7 @@
     "address": "Downtown LA",
     "note": "All-vinyl goth night. 10pm–2am.",
     "url": "#",
-    "image": null
+    "image": "img/obelisk-flyer.jpg"
   },
   {
     "title": "Bar Sinister – LA",
@@ -19,7 +19,7 @@
     "address": "Hollywood",
     "note": "Live bands + DJs in the courtyard.",
     "url": "#",
-    "image": null
+    "image": "img/BarSinister-flyer.jpg"
   },
   {
     "title": "Club Metro – Phoenix",
@@ -30,6 +30,6 @@
     "address": "Phoenix",
     "note": "Darkwave & post-punk all night.",
     "url": "#",
-    "image": null
+    "image": "img/ClubMetro-flyer.jpg"
   }
 ]
