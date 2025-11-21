@@ -169,7 +169,7 @@ function updateFlyer() {
     }
   }
 
-  if (!best) {
+    if (!best) {
     flyerEl.textContent = "No upcoming events matching these filters.";
     return;
   }
@@ -177,26 +177,68 @@ function updateFlyer() {
   let whenLabel = "";
   if (best.diffDays === 0) whenLabel = "Tonight";
   else if (best.diffDays === 1) whenLabel = "Tomorrow";
-  else if (best.diffDays <= 7) whenLabel = "This week";
+  else if (best.diffDays >= 2 && best.diffDays <= 7) whenLabel = "This week";
   else {
     const d = new Date(best.date + "T00:00:00");
     whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
 
+  const city = best.city || "City";
+  const genre = best.genre || "Genre";
+  const venue = best.venue || "Venue";
+  const note = best.note || "";
+  const url  = best.url  || "#";
+  const image = best.image || ""; // optional field
+
   flyerEl.innerHTML = `
-    <div class="flyer-main">
-      <div class="flyer-tag">${whenLabel}</div>
-      <h3>${best.title}</h3>
-      <p class="flyer-meta">
-        <button class="chip" data-city="${best.city}"><span>${best.city}</span></button>
-        <span>•</span>
-        <button class="chip" data-genre="${best.genre}"><span>${best.genre}</span></button>
-        <span>• ${best.venue}</span>
-      </p>
-      <p class="flyer-note">${best.note}</p>
-      <a class="flyer-link" href="${best.url}">Details</a>
+    <div class="flyer-flip" id="flyer-flip-main">
+      <div class="flyer-flip-inner">
+        <!-- FRONT: image side -->
+        <div class="flyer-face flyer-front">
+          <div class="flyer-image-frame ${image ? "has-image" : ""}">
+            ${image
+              ? `<img src="${image}" alt="Flyer for ${best.title}" class="flyer-preview-img" />`
+              : `<div class="flyer-front-hint">No flyer image uploaded yet.</div>`
+            }
+          </div>
+          <p class="flyer-front-hint-small">Click the flyer to see details.</p>
+        </div>
+
+        <!-- BACK: details side -->
+        <div class="flyer-face flyer-back">
+          <div class="flyer-main">
+            <div class="flyer-tag">${whenLabel}</div>
+            <h3>${best.title}</h3>
+            <p class="flyer-meta">
+              <button class="chip" data-city="${city}">
+                <span>${city}</span>
+              </button>
+              <span></span>
+              <button class="chip" data-genre="${genre}">
+                <span>${genre}</span>
+              </button>
+              <span>• ${venue}</span>
+            </p>
+            ${note ? `<p class="flyer-note">${note}</p>` : ""}
+            <a class="flyer-link" href="${url}" target="_blank" rel="noopener">
+              Details
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   `;
+
+  // enable flip on click
+  const flipRoot = document.getElementById("flyer-flip-main");
+  if (flipRoot) {
+    flipRoot.addEventListener("click", () => {
+      flipRoot.classList.toggle("is-back");
+    });
+  }
+}
+
+ 
 }
 
 // --- Flyer panel: load events and pick next upcoming, respecting filters ---
