@@ -19,7 +19,7 @@
     "address": "Hollywood",
     "note": "Live bands + DJs in the courtyard.",
     "url": "#",
-    "image": "img/BarSinister-flyer.jpg"
+    "image": "img/placeholder.jpg"
   },
   {
     "title": "Club Metro – Phoenix",
@@ -30,6 +30,6 @@
     "address": "Phoenix",
     "note": "Darkwave & post-punk all night.",
     "url": "#",
-    "image": "img/ClubMetro-flyer.jpg"
+    "image": "img/placeholder.jpg"
   }
 ]
