@@ -1,7 +1,7 @@
 [
   {
     "title": "Obelisk – LA",
-    "date": "2025-11-15",
+    "date": "2025-12-06",
     "city": "LA",
     "genre": "Goth",
     "venue": "Obelisk",
@@ -12,7 +12,7 @@
   },
   {
     "title": "Bar Sinister – LA",
-    "date": "2025-11-22",
+    "date": "2025-12-13",
     "city": "LA",
     "genre": "Industrial",
     "venue": "Bar Sinister",
@@ -23,12 +23,23 @@
   },
   {
     "title": "Club Metro – Phoenix",
-    "date": "2025-11-29",
+    "date": "2025-12-20",
     "city": "Phoenix",
     "genre": "Darkwave",
     "venue": "Club Metro",
-    "address": "Phoenix",
+    "address": "Downtown Phoenix",
     "note": "Darkwave & post-punk all night.",
+    "url": "#",
+    "image": "img/placeholder.jpg"
+  },
+  {
+    "title": "Area 51 – Vegas",
+    "date": "2025-12-27",
+    "city": "Vegas",
+    "genre": "Goth",
+    "venue": "Area 51",
+    "address": "Las Vegas Strip",
+    "note": "Industrial & goth crossover event.",
     "url": "#",
     "image": "img/placeholder.jpg"
   }
