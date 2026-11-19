@@ -239,7 +239,6 @@ function updateFlyer() {
 }
 
  
-}
 
 // --- Flyer panel: load events and pick next upcoming, respecting filters ---
 // ... loadFlyers and updateFlyer definitions ...
