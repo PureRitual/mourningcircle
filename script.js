@@ -183,8 +183,8 @@ function updateFlyer() {
     whenLabel = d.toLocaleDateString(undefined, { month: "short", day: "numeric" });
   }
 
-  const city = best.city || "City";
-  const genre = best.genre || "Genre";
+  const flyerCity = best.city || "City";
+  const flyerGenre = best.genre || "Genre";
   const venue = best.venue || "Venue";
   const note = best.note || "";
   const url  = best.url  || "#";
@@ -210,12 +210,12 @@ function updateFlyer() {
             <div class="flyer-tag">${whenLabel}</div>
             <h3>${best.title}</h3>
             <p class="flyer-meta">
-              <button class="chip" data-city="${city}">
-                <span>${city}</span>
+              <button class="chip" data-city="${flyerCity}">
+              <span>${flyerCity}</span>
               </button>
               <span></span>
-              <button class="chip" data-genre="${genre}">
-                <span>${genre}</span>
+             <button class="chip" data-genre="${flyerGenre}">
+            <span>${flyerGenre}</span>
               </button>
               <span>• ${venue}</span>
             </p>
