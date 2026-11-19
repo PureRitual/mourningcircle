@@ -1,7 +1,7 @@
 [
   { "id": "frankie", "name": "Frankie (Founder)", "url": "https://mourningcircle.com", "siredBy": null },
   { "id": "heather", "name": "Heather", "url": "https://example.com/heather", "siredBy": "frankie" },
-  { "id": "brian", "name": "brian", "url": "https://example.com/heather", "siredBy": "frankie" },
+  { "id": "brian", "name": "brian", "url": "https://example.com/brian", "siredBy": "frankie" },
   { "id": "karla",   "name": "Karla",   "url": "https://example.com/karla",   "siredBy": "frankie" },
   { "id": "chrissie","name": "Chrissie","url": "https://example.com/chrissie","siredBy": "heather" }
 ]
